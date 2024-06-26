@@ -11,7 +11,7 @@ const style = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 10,
-    shadowColor: colors.corPreto,
+    shadowColor: colors.preto,
     shadowOffset: {
       width: 0,
       height: 2,

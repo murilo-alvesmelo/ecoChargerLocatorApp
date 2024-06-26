@@ -12,7 +12,7 @@ type InitialScreenProps = {
 
 export default function InitialScreen({navigation}: InitialScreenProps) {
   function handleNavigateToLogin() {
-    return;
+    return navigation.navigate('LoginOptionsScreen');
   }
 
   return (
