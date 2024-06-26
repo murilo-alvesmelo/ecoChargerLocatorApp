@@ -3,16 +3,25 @@ import React from 'react';
 import style from './style';
 
 type ButtonEcoProps = {
+  loading?: boolean;
   title: string;
   isFunction?: () => void;
 };
 
-export default function ButtonEco({title, isFunction}: ButtonEcoProps) {
+export default function ButtonEco({
+  loading,
+  title,
+  isFunction,
+}: ButtonEcoProps) {
   return (
     <View style={style.containerButton}>
-      <TouchableOpacity onPress={isFunction}>
-        <Text style={style.text}>{title}</Text>
-      </TouchableOpacity>
+      {!loading ? (
+        <TouchableOpacity onPress={isFunction} style={style.touch}>
+          <Text style={style.text}>{title}</Text>
+        </TouchableOpacity>
+      ) : (
+        <></>
+      )}
     </View>
   );
 }
