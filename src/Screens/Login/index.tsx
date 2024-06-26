@@ -4,6 +4,7 @@ import {View} from 'react-native';
 import style from './style';
 import InputEco from '../../Components/InputEco';
 import ButtonEco from '../../Components/ButtonEco';
+import Toast from 'react-native-toast-message';
 
 export default function Login({navigation}: any) {
   const [email, setEmail] = useState<string>('');
@@ -19,7 +20,18 @@ export default function Login({navigation}: any) {
           navigation.navigate('Home');
         })
         .catch(error => {
-          console.error(error);
+          if (error.code === 'auth/user-not-found') {
+            Toast.show({
+              type: 'error',
+              text1: 'Usuário não encontrado!',
+            });
+          }
+          if (error.code === 'auth/invalid-credential') {
+            Toast.show({
+              type: 'error',
+              text1: 'Senha incorreta!',
+            });
+          }
         });
     } catch (error) {
       console.error(error);
@@ -45,6 +57,7 @@ export default function Login({navigation}: any) {
         />
       </View>
       <ButtonEco title="Login" isFunction={handleLogin} loading={loading} />
+      <Toast />
     </View>
   );
 }

@@ -8,8 +8,7 @@ export default function HomeScreen() {
   };
   useEffect(() => {
     auth().onAuthStateChanged(async user => {
-      const x = await user?.getIdToken();
-      console.log(x);
+      console.log(user);
     });
   }, []);
   return (
