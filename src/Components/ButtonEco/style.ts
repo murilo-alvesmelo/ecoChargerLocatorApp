@@ -7,15 +7,19 @@ const style = StyleSheet.create({
     color: colors.brancoForma,
   },
   containerButton: {
-    borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: colors.preto,
     padding: 16,
   },
   touch: {
+    flexDirection: 'row',
     width: '100%',
     alignItems: 'center',
+    gap: 8,
+  },
+  icon: {
+    color: colors.brancoForma,
   },
 });
 
