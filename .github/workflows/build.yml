@@ -57,7 +57,7 @@ jobs:
       - name: Cancel previous runs
         uses: styfle/cancel-workflow-action@0.9.1
       - name: Checkout repo from develop branch
-        uses: TooMuch4U/actions-clean@v2.1
+        uses: TooMuch4U/runner-post-cleanup@v2.1
         with:
           ref: develop
       - name: Install npm dependency
