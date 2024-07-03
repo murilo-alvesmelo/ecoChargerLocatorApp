@@ -2,6 +2,7 @@ import {TextInput, View} from 'react-native';
 import React from 'react';
 import style from './style';
 import {MaskedTextInput} from 'react-native-mask-text';
+import colors from '../../utils/colors';
 
 type InputEcoProps = {
   placeholder?: string;
@@ -32,6 +33,7 @@ export default function InputEco({
     <View>
       {mask ? (
         <MaskedTextInput
+          placeholderTextColor={colors.brancoForma}
           secureTextEntry={secureTextEntry}
           mask={mask}
           onChangeText={(text, rawText) => setValue && setValue(rawText)}
@@ -43,6 +45,7 @@ export default function InputEco({
         />
       ) : (
         <TextInput
+          placeholderTextColor={colors.brancoForma}
           secureTextEntry={secureTextEntry}
           onChangeText={setValue}
           keyboardType={keyboardType}
