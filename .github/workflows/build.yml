@@ -21,9 +21,10 @@ jobs:
         with:
           ref: develop
       - name: Load environment variables from .env
-        uses: cfpb/dotenv-action@v1
-        with:
-          envFile: .env
+        run: |
+          set -o allexport
+          source .env
+          set +o allexport
       - name: Install npm dependency
         run: npm install
       - name: Set up JDK 17
