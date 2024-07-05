@@ -82,8 +82,8 @@ jobs:
           xcode-version: '15.0'
       - name: Build iOS app
         run: |
-          xcodebuild -workspace ios/ecoChargerLocatorApp.xcworkspace -scheme ecoChargerLocatorApp -configuration Release -sdk iphoneos -archivePath $PWD/build/ecoChargerLocatorApp.xcarchive archive
-          xcodebuild -exportArchive -archivePath $PWD/build/ecoChargerLocatorApp.xcarchive -exportOptionsPlist ios/exportOptions.plist -exportPath $PWD/build/ecoChargerLocatorApp
+          xcodebuild -workspace ecoChargerLocatorApp.xcworkspace -scheme ecoChargerLocatorApp -configuration Release -sdk iphoneos build archive -archivePath $PWD/build/ecoChargerLocatorApp.xcarchive
+          xcodebuild -exportArchive -archivePath $PWD/build/ecoChargerLocatorApp.xcarchive -exportOptionsPlist exportOptions.plist -exportPath build
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
