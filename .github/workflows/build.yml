@@ -8,56 +8,16 @@ on:
     branches: [develop]
 
 jobs:
-  ios-build:
-    name: iOS Dev Build
-    runs-on: self-hosted
-    steps:
-      - name: Show self-hosted machine infomation
-        run: uname -a
-      - name: Cancel previous runs
-        uses: styfle/cancel-workflow-action@0.9.1
-      - name: Checkout repo from develop branch
-        uses: actions/checkout@v3
-        with:
-          ref: develop
-      - name: Install npm dependency
-        run: npm install
-      - name: Cache cocoapods
-        uses: actions/cache@v3
-        with:
-          path: /ios/Pods
-          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-pods-
-      - name: Install pod dependency
-        run: |
-          cd ios
-          bundle exec pod install
-      - name: Build iOS JS Bundle
-        run: |
-          npm run package-ios
-      - name: Install bundler
-        run: |
-          cd ios
-          gem install bundler
-      - name: Install gem plugins
-        run: |
-          cd ios
-          bundle install
-      - name: Run fastlane
-        run: |
-          cd ios
-          bundle exec fastlane build_testflight
   android-build:
-    name: Android Dev Build
+    name: Android Build
     runs-on: self-hosted
     steps:
-      - name: Show self-hosted machine infomation
+      - name: Show self-hosted machine information
         run: uname -a
       - name: Cancel previous runs
         uses: styfle/cancel-workflow-action@0.9.1
       - name: Checkout repo from develop branch
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: develop
       - name: Install npm dependency
@@ -78,3 +38,12 @@ jobs:
         run: |
           cd android
           ./gradlew assembleRelease
+      - name: Upload APK to GitHub Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: android/app/build/outputs/apk/release/app-release.apk
+          asset_name: app-release.apk
+          asset_content_type: application/vnd.android.package-archive
