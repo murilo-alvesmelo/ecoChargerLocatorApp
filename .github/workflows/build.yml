@@ -63,7 +63,7 @@ jobs:
           asset_name: app-release.aab
           asset_content_type: application/vnd.android.package-archive
   ios-build:
-    name: iOS Build
+    name: iOS Build-
     runs-on: macos-latest
     steps:
       - name: Checkout repo from develop branch
