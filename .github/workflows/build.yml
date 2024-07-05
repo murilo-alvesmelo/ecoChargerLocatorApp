@@ -10,11 +10,11 @@ on:
 jobs:
   android-build:
     name: Android Build
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-      - name: Show self-hosted machine information
+      - name: Show git-hosted machine information
         run: uname -a
       - name: Cancel previous runs
         uses: styfle/cancel-workflow-action@0.9.1
@@ -46,7 +46,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v1.0.0 # Use um nome de tag válido
+          tag_name: v1.0.0
           release_name: Release v1.0.0
           draft: false
           prerelease: false
