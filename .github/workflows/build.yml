@@ -10,11 +10,9 @@ on:
 jobs:
   android-build:
     name: Android Build
-    runs-on: self-hosted
-    permissions:
-      contents: write
+    runs-on: ubuntu-latest
     steps:
-      - name: Show self-hosted machine information
+      - name: Show git-hosted machine information
         run: uname -a
       - name: Cancel previous runs
         uses: styfle/cancel-workflow-action@0.9.1
@@ -28,8 +26,13 @@ jobs:
           envFile: .env
       - name: Install npm dependency
         run: npm install
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
       - name: Setup Android SDK
-        uses: android-actions/setup-android@v2
+        uses: android-actions/setup-android@v3
       - uses: actions/cache@v3
         with:
           path: |
@@ -50,8 +53,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ env.RELEASE_VERSION }}
-          release_name: Release ${{ env.RELEASE_VERSION }}
+          tag_name: v1.0.1
+          release_name: Release v1.0.1
           draft: false
           prerelease: false
       - name: Upload APK to GitHub Release
