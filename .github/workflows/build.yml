@@ -11,6 +11,8 @@ jobs:
   android-build:
     name: Android Build
     runs-on: self-hosted
+    permissions:
+      contents: write
     steps:
       - name: Show self-hosted machine information
         run: uname -a
