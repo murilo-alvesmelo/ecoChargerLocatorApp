@@ -45,7 +45,7 @@ jobs:
       - name: Execute Gradle build
         run: |
           cd android
-          ./gradlew bundleRelease
+          ./gradlew assembleRelease
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
