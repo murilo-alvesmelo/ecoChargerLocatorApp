@@ -3,7 +3,9 @@ const colors = {
   azulClaro: '#1976D2',
   brancoFundo: '#F5F5F5',
   brancoForma: '#EDF6FF',
-  corPreto: '#000000',
+  preto: '#000000',
+  pretoFundo: '#1A1A1A',
+  cinza: '#979797',
 };
 
 export default colors;

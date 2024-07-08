@@ -13,8 +13,8 @@ export default function ButtonInitialScreen({
   handleNavigateToLogin,
 }: ButtonInitilScreenProps) {
   return (
-    <TouchableOpacity onPress={handleNavigateToLogin}>
-      <View style={style.touch}>
+    <View>
+      <TouchableOpacity onPress={handleNavigateToLogin} style={style.touch}>
         <Text style={style.titleTouch}>Get Started</Text>
         <FontAwesomeIcon
           icon={['fas', 'arrow-right']}
@@ -22,7 +22,7 @@ export default function ButtonInitialScreen({
           style={style.icon}
           color={colors.brancoFundo}
         />
-      </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
+    </View>
   );
 }
