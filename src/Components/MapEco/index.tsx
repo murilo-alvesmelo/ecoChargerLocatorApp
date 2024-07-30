@@ -1,11 +1,17 @@
 import React from 'react';
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import {styleMap} from './styleMap';
+import {StyleSheet} from 'react-native';
 
-export default function MapEco({location}) {
+type Location = {
+  latitude: number;
+  longitude: number;
+};
+
+export default function MapEco({location}: {location: Location}) {
   return (
     <MapView
-      style={{flex: 1}}
+      style={style.container}
       provider={PROVIDER_GOOGLE}
       customMapStyle={styleMap}
       initialRegion={{
@@ -31,3 +37,9 @@ export default function MapEco({location}) {
     </MapView>
   );
 }
+
+const style = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
