@@ -1,30 +1,16 @@
-import {View, Text, Platform} from 'react-native';
+import {View, Text} from 'react-native';
 import React from 'react';
 import ButtonEco from '../../../../Components/ButtonEco';
 import style from './style';
-import {PERMISSIONS, request, RESULTS} from 'react-native-permissions';
+import Animated, {FadeOutUp} from 'react-native-reanimated';
 
-export default function Banner() {
-  const requestLocationPermission = async () => {
-    let permission;
+type BannerProps = {
+  askPermission: () => void;
+};
 
-    if (Platform.OS === 'ios') {
-      permission = PERMISSIONS.IOS.LOCATION_ALWAYS;
-    } else {
-      permission = PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
-    }
-
-    const result = await request(permission);
-
-    if (result === RESULTS.GRANTED) {
-      console.log('Permissão concedida');
-    } else {
-      console.log('Permissão negada');
-    }
-  };
-
+export default function Banner({askPermission}: BannerProps) {
   return (
-    <View style={style.container}>
+    <Animated.View style={style.container} exiting={FadeOutUp.delay(1000)}>
       <View style={style.viewMsg}>
         <Text style={style.text}>
           Te guiamos para o seu abastecimento ECO mais proximo
@@ -32,12 +18,12 @@ export default function Banner() {
       </View>
       <View style={style.viewButton}>
         <ButtonEco
-          isFunction={requestLocationPermission}
+          isFunction={askPermission}
           title="Ligar localização"
           styleButton={style.button}
           icon="location"
         />
       </View>
-    </View>
+    </Animated.View>
   );
 }

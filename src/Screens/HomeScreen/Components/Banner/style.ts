@@ -3,9 +3,10 @@ import colors from '../../../../utils/colors';
 
 const style = StyleSheet.create({
   container: {
-    flex: 1,
+    height: '35%',
     backgroundColor: colors.roxo,
     justifyContent: 'space-around',
+    zIndex: 1,
   },
   viewMsg: {
     padding: 35,
@@ -17,7 +18,6 @@ const style = StyleSheet.create({
   },
   button: {
     borderRadius: 25,
-    backgroundColor: '#fff',
     paddingVertical: 8,
   },
   viewButton: {
